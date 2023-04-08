@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-
+    resources :users, only: [:show, :edit, :update, :index]
     resources :posts
 
     root to: 'homes#top'

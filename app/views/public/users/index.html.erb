@@ -1,0 +1,60 @@
+ <h2>User info</h2>
+      
+      <table>
+        <tbody>
+          <tr>
+            <th>name</th>
+            <th><%= @user.name %></th>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <th><%= @user.introduction %><th>
+          </tr>
+        </tbody>
+       </table>
+      
+       <% if @user == current_user %>
+
+      <%= link_to edit_user_path(@userid), class:"btn btn-outline-secondary btn-block" do %>
+       <i class="fas fa-user-cog"></i>  <% end %>
+       <% end %>
+       
+       
+       <h2>New book</h2>
+
+        <%= form_with model: @post ,method: :post do |f| %>
+
+
+
+        <h4>Title</h4>
+        <%= f.text_field :title %>
+       <h4>Opinion</h4>
+        <%= f.text_area :body %>
+       <%= f.submit 'Create Book' ,class: 'btn btn-success'%>
+
+        <% end %>
+        
+        <h2>Users</h2>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">image</th>
+      <th scope="col">name</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      
+      <td><%= user.name %></td>
+     
+
+    </tr>
+  <% end %>
+
+  </tbody>
+</table>

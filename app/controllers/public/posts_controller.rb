@@ -5,10 +5,11 @@ class Public::PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id]) 
+    @post = Post.find(params[:id])
   end
 
   def index
+      @user = current_user
       @post = Post.new
       @posts = Post.all
   end
@@ -17,10 +18,10 @@ class Public::PostsController < ApplicationController
   end
 
   def create
-      post = Post.new(post_params)
-      post.user_id = current_user.id
-   if post.save
-      redirect_to post_path(post)
+      @post = Post.new(post_params)
+      @post.user_id = current_user.id
+   if @post.save
+      redirect_to post_path(@post.id)
    else
       @posts = Post.all
       render 'index'
@@ -36,6 +37,6 @@ class Public::PostsController < ApplicationController
  private
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :image)
   end
 end
