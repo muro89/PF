@@ -16,11 +16,17 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    resources :users, only: [:show, :edit, :update, :index]
-    resources :posts
-    
+    resources :users, only: [:show, :edit, :update, :index] do
+       member do
+        get :favorites
+      end
+    end
+
+    resources :posts do
+    resource :favorites, only: [:create, :destroy]
+    end
+
     get "search" => "searches#search" , as:'search'
-    
     root to: 'homes#top'
     get 'about' => 'homes#about'
   end

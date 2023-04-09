@@ -15,6 +15,9 @@
          <th>自己紹介</th>
          <th><%= @user.introduction %><th>
        </tr>
+       <tr>
+          <%=link_to"お気に入り記事",favorites_user_path(@user) %>
+       </tr>
       </tbody>
     </table>
        <%= link_to edit_user_path, class:"btn btn-outline-secondary btn-block" do %>
