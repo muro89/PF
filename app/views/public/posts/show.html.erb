@@ -39,8 +39,13 @@
         <td><%= link_to  'Edit' , edit_post_path, class: 'btn btn-success'  %> </td>
         <td><%= link_to  'Destroy' , post_path(@post.id),method: :delete, class: 'btn btn-danger'  %> </td>
             <% end %>
+      </tbody>
+    </table>
+      <div id="comments_area">
+       <%= render 'public/post_comments/comment', post:@post%>
+         </div>
 
+      <div class="new-comment">
 
-
- </tbody>
-</table>
+        <%= render 'public/post_comments/post_comment' , post:@post, post_comment:@post_comment %>
+   </div>
