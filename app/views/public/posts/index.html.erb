@@ -25,7 +25,10 @@
        <h4>Title</h4>
         <%= f.text_field :title %>
        <h4>Opinion</h4>
-        <%= f.text_area :body %>
+        <%= f.text_area :body %><br>
+       <%= f.label"タグ (,で区切ると複数タグ登録できます)" %>
+       <%= f.text_field :name,value: @tag_list%>
+
        <%= f.submit 'Create Book' ,class: 'btn btn-success' %>
 
         <% end %>
@@ -38,22 +41,28 @@
 <table class="table">
   <thead>
     <tr>
+        <th scope="col">image</th>
       <th scope="col">Title</th>
       <th scope="col">Opinion</th>
+
 
 
     </tr>
   </thead>
   <tbody>
     <% @posts.each do |book| %>
+
     <tr>
       <td>   <%= link_to user_path(book.user.id) do %>
       <%= image_tag book.user.get_profile_image(100,100) %> <%end %> </td>
      <td><%= link_to book.title, post_path(book.id)%></td>
       <td><%= book.body %></td>
+    <% end %>
 
-    </tr>
-  <% end %>
 
   </tbody>
 </table>
+
+<% @tag_list.each do |list|%>
+<%=link_to list.name,search_tag_path(tag_id: list.id) %>
+<%="(#{list.posts.count})" %><% end %>

@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :posts
     
     get "search" => "searches#search" , as:'search'
-    
+    get "search_tag"=>"posts#search_tag"
     root to: 'homes#top'
     get 'about' => 'homes#about'
   end
