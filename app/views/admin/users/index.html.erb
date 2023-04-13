@@ -17,7 +17,11 @@
                 <td><%= user.id %></td>
                 <td><%= user.name %></td>
                 <td><%= user.email %></td>
-                
+                 <% if user.is_deleted == false %>
+                  <td class="text-success">有効</td>
+                <% else %>
+                  <td class="text-secondary">退会</td>
+                <% end %>
               </tr>
             <% end %>
           </tbody>
