@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="card rounded col-9 mx-auto mt-4" style="background-color:#fcfced;" >
+    <div class="row">
+      <div class="col-12 p-0">
+        <h4 class="text-center p-2">会員一覧</h4>
+        <table class="table table-hover mb-0 text-center" style="background-color:#fcfced">
+          <thead class="table-active">
+            <tr>
+              <th><%= "会員ID" %></th>
+              <th><%= "氏名" %></th>
+              <th><%= "メールアドレス" %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= user.id %></td>
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+                
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
