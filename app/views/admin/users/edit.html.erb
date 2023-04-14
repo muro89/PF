@@ -1,0 +1,32 @@
+<%= form_with model: @user, url: admin_user_path do |f| %>
+
+<table class="table table-hover mb-0 text-center" style="background-color:#fcfced">
+          <thead class="table-active">
+            <tr>
+              <th><%= "会員ID" %></th>
+              <th><%= "氏名" %></th>
+              <th><%= "メールアドレス" %></th>
+              <th><%= "ステータス" %></th>
+            </tr>
+          </thead>
+            <tbody>
+            <tr>
+                <td><%= @user.id %></td>
+                <td><%= @user.name %></td>
+                <td><%= @user.email %></td>
+                 <td>
+                  <%= f.radio_button :is_deleted, "false" %>
+                  <%= f.label :is_deleted_false, "有効" %>
+                  <%= f.radio_button :is_deleted, "true", class:"ml-4" %>
+                  <%= f.label :is_deleted_false, "退会" %>
+                </td>
+
+
+                <td>
+                  <%= f.submit "変更を保存", class: "btn mr-5", :style=>"color:#007b43; background-color:#badcad;" %>
+                </td>
+              </tr>
+
+            </tbody>
+            </table>
+            <% end %>
