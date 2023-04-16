@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    resources :customers, only: [:index, :show, :edit, :update]
+    resources :users, only: [:index, :edit, :update]
     # home
     root to: 'homes#top'
   end
@@ -29,8 +29,13 @@ Rails.application.routes.draw do
 
 
     get "search" => "searches#search" , as:'search'
+    get "search_tag"=>"posts#search_tag"
     root to: 'homes#top'
     get 'about' => 'homes#about'
+     # 退会確認画面
+    get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    # 論理削除用のルーティング
+    patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
   end
 
 end

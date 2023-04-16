@@ -29,6 +29,11 @@ class User < ApplicationRecord
     end
   end
 
+   # is_deletedがfalseならtrueを返すようにしている 退会機能
+  def active_for_authentication?
+    super && (is_deleted == false)
+  end
+
 
   def get_profile_image(width, height)
     unless profile_image.attached?
