@@ -1,0 +1,18 @@
+
+<table>
+
+  <thred>
+    <tr>
+      <th>タイトル </th>
+      <th>内容 </th>
+    </tr>
+  </thred>
+  <tbody>
+    <% @favorite_posts.each do |post|%>
+    <tr>
+      <td>  <%=post.title %> </td>
+      <td>  <%=post.body %>  </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
