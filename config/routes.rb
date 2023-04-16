@@ -19,12 +19,14 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update, :index] do
        member do
         get :favorites
-      end
+       end
     end
 
     resources :posts do
     resource :favorites, only: [:create, :destroy]
+    resources :post_comments, only: [:create, :destroy]
     end
+
 
     get "search" => "searches#search" , as:'search'
     get "search_tag"=>"posts#search_tag"
