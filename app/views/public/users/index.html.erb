@@ -1,40 +1,39 @@
- <h2>User info</h2>
-      
-      <table>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 ">
+ <h2>ユーザー</h2>
+       <%= image_tag @user.get_profile_image ,size:"50x50",class:"rounded-circle"%>
+      <table class="table-primary">
         <tbody>
-          <tr>
-            <th>name</th>
-            <th><%= @user.name %></th>
-          </tr>
-          <tr>
-            <th>introduction</th>
-            <th><%= @user.introduction %><th>
-          </tr>
+          <tr><th>名前</th></tr>
+          <tr><th><%= @user.name %></th></tr>
+          <tr><th>紹介文</th></tr>
+          <tr><th><%= @user.introduction %><th></tr>
         </tbody>
        </table>
-      
+
        <% if @user == current_user %>
 
       <%= link_to edit_user_path(@userid), class:"btn btn-outline-secondary btn-block" do %>
        <i class="fas fa-user-cog"></i>  <% end %>
        <% end %>
-       
-       
-       <h2>New book</h2>
 
+
+       <h2>投稿記事</h2>
         <%= form_with model: @post ,method: :post do |f| %>
 
 
 
-        <h4>Title</h4>
+        <h4>タイトル</h4>
         <%= f.text_field :title %>
-       <h4>Opinion</h4>
+       <h4>内容</h4>
         <%= f.text_area :body %>
        <%= f.submit 'Create Book' ,class: 'btn btn-success'%>
 
         <% end %>
-        
-        <h2>Users</h2>
+ </div>
+<div class="col-md-8 offset-md-1">
+        <h2>各ユーザー</h2>
 
 <%= render 'public/searches/search', user: current_user %>
 <table class="table">
@@ -49,12 +48,18 @@
   <tbody>
     <% @users.each do |user| %>
     <tr>
-      
-      <td><%= user.name %></td>
-     
+      <th>   <%= image_tag user.get_profile_image ,size:"50x50",class:"rounded-circle"%>  </th>
+
+      <td><%= link_to user.name, user_path(user.id)  %></td>
+
 
     </tr>
   <% end %>
 
   </tbody>
+
 </table>
+<%= paginate @users %>
+</div>
+</div>
+</div>

@@ -9,7 +9,7 @@ class Public::UsersController < ApplicationController
   def index
     @user   = current_user
     @userid = current_user.id
-    @users  = User.all
+    @users  = User.all.page(params[:page]).per(5)
     @posts  = @user.posts
     @post   = Post.new
   end
