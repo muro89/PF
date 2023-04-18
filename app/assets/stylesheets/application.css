@@ -13,8 +13,8 @@
  *= require_tree .
  *= require_self
  */
- @import "bootstrap";
- 
+
+
 .main-container {
   background-image: url("/tourism.jpg");
   height: 800px;
