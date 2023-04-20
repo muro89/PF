@@ -11,6 +11,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
+      
       @user = current_user
       @post = Post.new
       @posts = Post.all
@@ -51,7 +52,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to user_path(params[:id])
+    redirect_to posts_path
   end
 
   def search_tag
