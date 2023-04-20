@@ -37,7 +37,7 @@
         <%= f.text_area :body  , size:"23*20" %>
 
        <h6> タグ <br>(,で区切ると複数,登録できます)</h6>
-       <%= f.text_field :names,value: @tag_list%>
+       <%= f.text_field :name,value: @tag_list%>
 
        <%= f.submit 'Create Book' ,class: 'btn btn-success'%>
         <% end %>
