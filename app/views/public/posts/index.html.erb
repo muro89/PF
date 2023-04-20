@@ -3,39 +3,35 @@
     <div class="col-md-3 ">
 <h2>User info</h2>
 
-      <table>
-        <tbody>
-          <tr>
-            <th>name</th>
-            <th><%= @user.name %></th>
-          </tr>
-          <tr>
-            <th>introduction</th>
-            <th><%= @user.introduction %><th>
-          </tr>
-        </tbody>
-      </table>
-
-        <% if @user == current_user %>
-        <%= link_to edit_user_path(current_user.id),  class:"btn btn-outline-secondary btn-block" do %>
+    <div class="card" style="width:15rem;">
+  <%= image_tag @user.get_profile_image ,size:"230x150",class:"rounded-circle"%>
+  <div class="card-body">
+    <h5 class="card-title"><%=@user.name %></h5><br>
+    <h6 class="card-subtitle text-muted">自己紹介 </h6>
+    <p class="card-text"><%= @user.introduction %></p>
+    <% if @user == current_user %>
+    <%= link_to edit_user_path(current_user.id), class:"btn btn-outline-secondary btn-block" do %>
        <i class="fas fa-user-cog"></i>  <% end %>
        <% end %>
+  </div>
+</div>
+<p class="text-center"><%=link_to"お気に入り記事",favorites_user_path(@user) %></p>
 
-
- <h2>New book</h2>
+       <h6 class="text-center">投稿</h6>
         <%= form_with model: @post ,method: :post do |f| %>
 
-    <h4>タイトル</h4>
+    <h6>タイトル</h6>
         <%= f.text_field :title %>
-    <h4>内容</h4>
-        <%= f.text_area :body %>
-        
-        <%= f.label"タグ (,で区切ると複数,登録できます)" %>
+    <h6>内容</h6>
+        <%= f.text_area :body  , size:"23*20" %>
+
+       <h6> タグ <br>(,で区切ると複数,登録できます)</h6>
        <%= f.text_field :name,value: @tag_list%>
-       
+
        <%= f.submit 'Create Book' ,class: 'btn btn-success'%>
         <% end %>
-</div>
+
+        </div>
 <div class="col-md-8 offset-md-1">
 
 <%= render 'public/searches/search', user: current_user %>

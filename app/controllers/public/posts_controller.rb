@@ -19,7 +19,7 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
-    post = Post.find(params[:id])
+    @post = Post.find(params[:id])
     @tag_list = @post.tags.pluck(:name).join(',')
   end
 
@@ -32,6 +32,8 @@ class Public::PostsController < ApplicationController
       redirect_to post_path(@post.id),notice:'投稿完了しました'
    else
       @posts = Post.all
+      @user = current_user
+      @tag_list = Tag.all
       render 'index'
    end
   end

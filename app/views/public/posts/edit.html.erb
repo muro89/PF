@@ -1,0 +1,13 @@
+<h2>New book</h2>
+        <%= form_with model: @post ,method: :patch do |f| %>
+
+    <h4>タイトル</h4>
+        <%= f.text_field :title %>
+    <h4>内容</h4>
+        <%= f.text_area :body %>
+
+        <%= f.label"タグ (,で区切ると複数,登録できます)" %>
+       <%= f.text_field :name,value: @tag_list%>
+
+       <%= f.submit 'Create Book' ,class: 'btn btn-success'%>
+        <% end %>
