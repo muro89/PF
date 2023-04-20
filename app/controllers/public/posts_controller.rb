@@ -35,6 +35,8 @@ class Public::PostsController < ApplicationController
    end
   end
 
+
+
   def update
     @post = Post.find(params[:id])
     tag_list = params[:post][:name].split(',')
