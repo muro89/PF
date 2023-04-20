@@ -1,8 +1,17 @@
-<p>show</p>
-
+<% if @post.errors.any? %>
+     <h3><%= @post.errors.count %>errors prohibited this obj from being saved:</h3>
+     <ul>
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+     </ul>
+    <% end %>
 <div>
   <%= flash[:notice] %>
 </div>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3 ">
    <h2>ユーザー情報</h2>
 
    <table>
@@ -30,8 +39,15 @@
         <%= f.text_field :title %>
     <h4>内容</h4>
         <%= f.text_area :body %>
-        <%= f.submit 'Create Book' ,class: 'btn btn-success'%>
+        
+        <%= f.label"タグ (,で区切ると複数,登録できます)" %>
+       <%= f.text_field :names,value: @tag_list%>
+       
+       <%= f.submit 'Create Book' ,class: 'btn btn-success'%>
         <% end %>
+        
+        </div>
+<div class="col-md-8 offset-md-1">
     <h2>投稿内容</h2>
      <table class="table">
       <thead>
@@ -47,8 +63,12 @@
                  <%= image_tag @user.get_profile_image,size:"50x50" %> <% end %> </th>
              <td><%= link_to book.title, post_path(book.id)%></td>
              <td><%= book.body %></td>
+             <td><%= link_to  'Destroy' , post_path(book.id),method: :delete, class: 'btn btn-danger'  %> </td> %></td>
          </tr>
            <% end %>
         </tbody>
       </table>
 
+</div>
+</div>
+</div>
