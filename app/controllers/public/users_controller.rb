@@ -2,8 +2,13 @@ class Public::UsersController < ApplicationController
 
   def show
     @user  = User.find(params[:id])
-    @posts  = @user.posts
+    @posts  = @user.posts.page(params[:page]).per(5)
     @post  = Post.new
+
+    @today_post = @posts.created_today
+    @yesterday_post = @posts.created_yesterday
+    @this_week_post = @posts.created_this_week
+    @last_week_post = @posts.created_last_week
   end
 
   def index
@@ -26,6 +31,18 @@ class Public::UsersController < ApplicationController
    else
       render :edit
    end
+  end
+
+  def search
+    @user = User.find(params[:user_id])
+    @posts = @user.posts
+    @post = Post.new
+    if params[:created_at] == ""
+      @search_post = "日付を選択してください"#①
+    else
+      create_at = params[:created_at]
+      @search_post = @posts.where(['created_at LIKE ? ', "#{create_at}%"]).count#②
+    end
   end
 
 

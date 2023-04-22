@@ -30,6 +30,34 @@
         </tbody>
       </table>
       <%= paginate @posts %>
+
+        <h2>7日間分の投稿数</h2>
+   <table class="table">
+   <thead>
+    <tr>
+     <th>６日前</th>
+     <th>5日前</th>
+     <th>4日前</th>
+     <th>3日前</th>
+     <th>２日前</th>
+     <th>昨日</th>
+     <th>今日</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <th><%= @posts.created_6days_ago.count %></th>
+     <th><%= @posts.created_5days_ago.count %></th>
+     <th><%= @posts.created_4days_ago.count %></th>
+     <th><%= @posts.created_3days_ago.count %></th>
+     <th><%= @posts.created_2days_ago.count %></th>
+     <th><%= @posts.created_yesterday.count %></th>
+     <th><%= @posts.created_today.count %></th>
+    </tr>
+   </tbody>
+  </table>
+
+
      <div>
       <% @tag_list.each do |list|%>
       <%=link_to list.name,search_tag_path(tag_id: list.id) %>

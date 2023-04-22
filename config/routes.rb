@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :users, only: [:show, :edit, :update, :index] do
+      get "search" => "users#search"
        member do
         get :favorites
        end
