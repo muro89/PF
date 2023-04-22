@@ -13,11 +13,11 @@
     <h6>タイトル</h6>
         <%= f.text_field :title %>
     <h6>内容</h6>
-        <%= f.text_area :body  , size:"23*20" %>
+        <%= f.text_area :body, size:"23*20" %>
 
        <h6> タグ <br>(,で区切ると複数,登録できます)</h6>
-       <%= f.text_field :name,value: tag_list%>
+       <%= f.text_field :name, value: tag_list%>
 
-       <%= f.submit 'Create Book' ,class: 'btn btn-success'%>
+       <%= f.submit '投稿' ,class: 'btn btn-outline-success offset-4 btn-lg mt-1',size:"40*20" %>
         <% end %>
 

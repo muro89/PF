@@ -6,8 +6,8 @@
     <h4>内容</h4>
         <%= f.text_area :body %>
 
-        <%= f.label"タグ (,で区切ると複数,登録できます)" %>
-       <%= f.text_field :name,value: @tag_list%>
+       <br> <%= f.label"タグ (,で区切ると複数,登録できます)" %><br>
+       <%= f.text_field :name,value: @tag_list%> <br>
 
-       <%= f.submit 'Create Book' ,class: 'btn btn-success'%>
+       <%= f.submit 'Create Book' ,class: 'btn btn-success mt-1'%>
         <% end %>

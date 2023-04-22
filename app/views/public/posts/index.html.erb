@@ -1,23 +1,9 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3 ">
-<h2>User info</h2>
-
-    <div class="card" style="width:15rem;">
-  <%= image_tag @user.get_profile_image ,size:"230x150",class:"rounded-circle"%>
-  <div class="card-body">
-    <h5 class="card-title"><%=@user.name %></h5><br>
-    <h6 class="card-subtitle text-muted">自己紹介 </h6>
-    <p class="card-text"><%= @user.introduction %></p>
-    <% if @user == current_user %>
-    <%= link_to edit_user_path(current_user.id), class:"btn btn-outline-secondary btn-block" do %>
-       <i class="fas fa-user-cog"></i>  <% end %>
-       <% end %>
-  </div>
-</div>
-<p class="text-center"><%=link_to"お気に入り記事",favorites_user_path(@user) %></p>
-
-       <h6 class="text-center">投稿</h6>
+        <%= render 'public/users/info', user: @user %>
+      <p class="text-center"><%=link_to"お気に入り記事",favorites_user_path(@user) %></p>
+      <h6 class="text-center">投稿</h6>
         <%= form_with model: @post ,method: :post do |f| %>
 
     <h6>タイトル</h6>
@@ -35,7 +21,7 @@
 <div class="col-md-8 offset-md-1">
 
 <%= render 'public/searches/search', user: current_user %>
-<h2>Books</h2>
+<h2>投稿記事</h2>
 <table class="table">
   <thead>
     <tr>
@@ -67,11 +53,13 @@
 
   </tbody>
 </table>
+ <%= paginate @posts %>
 
+<div>
 <% @tag_list.each do |list|%>
 <%=link_to list.name,search_tag_path(tag_id: list.id) %>
 <%="(#{list.posts.count})" %><% end %>
-
+</div>
 </div>
 </div>
 </div>

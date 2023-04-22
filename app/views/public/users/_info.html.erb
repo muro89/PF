@@ -1,0 +1,12 @@
+ <div class="card" style="width:15rem;">
+       <%= image_tag user.get_profile_image ,size:"230x150"%>
+        <div class="card-body">
+          <h5 class="card-title"><%=@user.name %></h5><br>
+          <h6 class="card-subtitle text-muted">自己紹介 </h6>
+          <p class="card-text"><%= @user.introduction %></p>
+          <% if @user == current_user %>
+          <%= link_to edit_user_path(user), class:"btn btn-outline-secondary btn-block" do %>
+          <i class="fas fa-user-cog"></i>  <% end %>
+           <% end %>
+        </div>
+  </div>

@@ -6,19 +6,7 @@
 <div class="container px-5 px-sm-0　">
   <div class="row">
     <div class="col-md-3 ">
-      <div class="card" style="width:15rem;">
-       <%= image_tag @user.get_profile_image ,size:"230x150",class:"rounded-circle"%>
-        <div class="card-body">
-          <h5 class="card-title"><%=@user.name %></h5><br>
-          <h6 class="card-subtitle text-muted">自己紹介 </h6>
-          <p class="card-text"><%= @user.introduction %></p>
-          <% if @user == current_user %>
-          <%= link_to edit_user_path, class:"btn btn-outline-secondary btn-block" do %>
-          <i class="fas fa-user-cog"></i>  <% end %>
-           <% end %>
-        </div>
-      </div>
-
+      <%= render 'public/users/info', user: @user %>
       <p class="text-center"><%=link_to"お気に入り記事",favorites_user_path(@user) %></p>
       <%= render 'public/posts/form',post: @post,tag_list: @tag_list%>
     </div>
@@ -33,16 +21,17 @@
         </tr>
       </thead>
       <tbody>
-      <% @posts.each do |book| %>
+       <% @posts.each do |book| %>
         <tr>
            <td><%= link_to book.title, post_path(book.id)%></td>
            <td><%= book.body %></td>
-           <td><%= link_to  'Destroy' , post_path(book.id),method: :delete, class: 'btn btn-danger'  %> </td>
+           <td> <%= book.tags.name %> </td>
+           <td><%= link_to  '削除' , post_path(book.id),method: :delete, class: 'btn btn-outline-danger' %> </td>
         </tr>
            <% end %>
-        </tbody>
-      </table>
+      </tbody>
+     </table>
 
-</div>
-</div>
+    </div>
+  </div>
 </div>

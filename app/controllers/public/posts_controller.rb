@@ -14,7 +14,7 @@ class Public::PostsController < ApplicationController
 
       @user = current_user
       @post = Post.new
-      @posts = Post.all
+      @posts = Post.all.page(params[:page]).per(5)
       @tag_list = Tag.all
   end
 
