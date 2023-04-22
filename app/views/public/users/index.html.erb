@@ -1,9 +1,8 @@
- <div class="container px-5 px-sm-0　">
+ <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3 ">
-
       <%= render 'public/users/info', user: @user %>
-      <p class="text-center"><%=link_to"お気に入り記事",favorites_user_path(@user) %></p>
+      <p class="text-center "><%=link_to"お気に入り記事",favorites_user_path(@user) %></p>
       <%= render 'public/posts/form',post: @post,tag_list: @tag_list%>
     </div>
 

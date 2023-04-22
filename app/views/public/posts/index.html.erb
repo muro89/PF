@@ -1,65 +1,41 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3 ">
-        <%= render 'public/users/info', user: @user %>
+      <%= render 'public/users/info', user: @user %>
       <p class="text-center"><%=link_to"お気に入り記事",favorites_user_path(@user) %></p>
-      <h6 class="text-center">投稿</h6>
-        <%= form_with model: @post ,method: :post do |f| %>
+      <%= render 'public/posts/form',post: @post,tag_list: @tag_list%>
+    </div>
 
-    <h6>タイトル</h6>
-        <%= f.text_field :title %>
-    <h6>内容</h6>
-        <%= f.text_area :body  , size:"23*20" %>
-
-       <h6> タグ <br>(,で区切ると複数,登録できます)</h6>
-       <%= f.text_field :name,value: @tag_list%>
-
-       <%= f.submit 'Create Book' ,class: 'btn btn-success'%>
-        <% end %>
-
-        </div>
-<div class="col-md-8 offset-md-1">
-
-<%= render 'public/searches/search', user: current_user %>
-<h2>投稿記事</h2>
-<table class="table">
-  <thead>
-    <tr>
-        <th scope="col">image</th>
-      <th scope="col">Title</th>
-      <th scope="col">Opinion</th>
-
-
-
-    </tr>
-  </thead>
-  <tbody>
-    <% @posts.each do |post| %>
-    <tr>
-      <td>   <%= link_to user_path(post.user.id) do %>
-             <%= image_tag post.user.get_profile_image, size:"50x50" %> <%end %> </td>
-      <td><%= link_to post.title, post_path(post.id)%></td>
-      <td><%= post.body %></td>
-
-      <td id="favorite_buttons_<%= post.id %>">
-         <%= render "public/favorites/favorite",post:post %>
-      </td>
-
-
-
-
-    </tr>
-    <% end %>
-
-  </tbody>
-</table>
- <%= paginate @posts %>
-
-<div>
-<% @tag_list.each do |list|%>
-<%=link_to list.name,search_tag_path(tag_id: list.id) %>
-<%="(#{list.posts.count})" %><% end %>
-</div>
-</div>
-</div>
+    <div class="col-md-8 offset-md-1">
+      <%= render 'public/searches/search', user: current_user %>
+      <h2>投稿記事</h2>
+      <table class="table">
+       <thead>
+         <tr>
+           <th scope="col">image</th>
+           <th scope="col">Title</th>
+           <th scope="col">Opinion</th>
+         </tr>
+       </thead>
+       <tbody>
+         <% @posts.each do |post| %>
+         <tr>
+           <td>   <%= link_to user_path(post.user.id) do %>
+                  <%= image_tag post.user.get_profile_image, size:"50x50" %> <%end %> </td>
+           <td>   <%= link_to post.title, post_path(post.id)%></td>
+           <td>   <%= post.body %></td>
+           <td id="favorite_buttons_<%= post.id %>">
+                 <%= render "public/favorites/favorite",post:post %> </td>
+         </tr>
+         <% end %>
+        </tbody>
+      </table>
+      <%= paginate @posts %>
+     <div>
+      <% @tag_list.each do |list|%>
+      <%=link_to list.name,search_tag_path(tag_id: list.id) %>
+      <%="(#{list.posts.count})" %><% end %>
+     </div>
+    </div>
+  </div>
 </div>
