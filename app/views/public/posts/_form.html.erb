@@ -7,9 +7,11 @@
   </ul>
 <% end %>
 
-<h6 class="text-center">投稿</h6>
+<h3 class="text-center mt-5">投稿</h3>
+ <div class="card" style="width:17.5rem;">
         <%= form_with model: post ,method: :post do |f| %>
-
+    <h6 class="text-center">画像</h6>
+  <%= f.file_field :image, placeholder: "写真", accept: "image/*" %><br>
     <h6>タイトル</h6>
         <%= f.text_field :title %>
     <h6>内容</h6>
@@ -20,4 +22,4 @@
 
        <%= f.submit '投稿' ,class: 'btn btn-outline-success offset-4 btn-lg mt-1',size:"40*20" %>
         <% end %>
-
+  </div>

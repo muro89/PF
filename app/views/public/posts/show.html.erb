@@ -1,55 +1,44 @@
-     <h2>User info</h2>
-
-      <table>
-        <tbody>
-          <tr>
-            <th>name</th>
-            <th><%= @post.user.name%></th>
-          </tr>
-          <tr>
-            <th>introduction</th>
-            <th><%= @post.user.introduction %><th>
-          </tr>
-        </tbody>
-      </table>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3 ">
+       <%= render 'public/users/info', user: @post.user %>
+    </div>
 
 
-      <% if @user == current_user %>
-      <%= link_to edit_user_path(@post.user.id),  class:"btn btn-outline-secondary btn-block" do %>
-       <i class="fas fa-user-cog"></i>  <% end %>
-       <% end %>
+    <div class="col-md-5 offset-md-1">
 
-
-       <h2>New book</h2>
-           <%= form_with model: @post ,method: :post do |f| %>
-       <h4>Title</h4>
-           <%= f.text_field :title %>
-       <h4>Opinion</h4>
-           <%= f.text_area :body %>
-           <%= f.submit 'Create Book' ,class: 'btn btn-success' %>
-           <% end %>
-
-       <h2>Book detail</h2>
-    <table class="table">
-     <tbody>
-        <td>
-            <%= link_to @post.user.name, user_path(@post.user.id) %></td>
-        <td><%= link_to @post.title, post_path(@post.id) %></td>
-        <td><%= @post.body %></td>
-       <% @post_tags.each do |tag| %>
-        <td><%=tag.name%><%="(#{tag.posts.count})" %></td>
+  <div>   <h2 class="text offset-1 ">投稿内容</h2>
+    <div class="card" style="width:15rem;">
+            <%= image_tag @post.get_image ,size:"230x150"%>
+      <div class="card-body">
+        <h5 class="card-taitle">
+            <%= link_to @post.title, post_path(@post.id) %> </h5>
+        <h6 class="card-subtitle text-muted"> 内容 </h6>
+        <p class="card-text"> <%= @post.body %> </p>
+            <% @post_tags.each do |tag| %>
+        <label>  # <%= tag.name %> </label>
         <% end %>
-            <% if @post.user == current_user %>
+
+        <br><% if @post.user == current_user %>
         <td><%= link_to  'Edit' , edit_post_path, class: 'btn btn-success'  %> </td>
         <td><%= link_to  'Destroy' , post_path(@post.id),method: :delete, class: 'btn btn-danger'  %> </td>
             <% end %>
-      </tbody>
-    </table>
+      </div>
+    </div>
+    </div>
+    </div>
+
+
+    <div class="col-md-3 ">
       <div id="comments_area">
-       <%= render 'public/post_comments/comment', post:@post%>
-         </div>
+        <h2 class="text-center">コメント一覧</h2>
+        <%= render 'public/post_comments/comment', post:@post%>
+      </div>
 
       <div class="new-comment">
-
         <%= render 'public/post_comments/post_comment' , post:@post, post_comment:@post_comment %>
-   </div>
+
+      </div>
+    </div>
+  </div>
+</div>
