@@ -11,14 +11,15 @@ class Public::PostsController < ApplicationController
   end
 
   def index
+
       @user = current_user
       @post = Post.new
-      @posts = Post.all
+      @posts = Post.all.page(params[:page]).per(5)
       @tag_list = Tag.all
   end
 
   def edit
-    post = Post.find(params[:id])
+    @post = Post.find(params[:id])
     @tag_list = @post.tags.pluck(:name).join(',')
   end
 
@@ -31,9 +32,13 @@ class Public::PostsController < ApplicationController
       redirect_to post_path(@post.id),notice:'投稿完了しました'
    else
       @posts = Post.all
+      @user = current_user
+      @tag_list = Tag.all
       render 'index'
    end
   end
+
+
 
   def update
     @post = Post.find(params[:id])
@@ -49,7 +54,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to user_path(params[:id])
+    redirect_to posts_path
   end
 
   def search_tag

@@ -1,0 +1,14 @@
+<h2>編集</h2>
+        <%= form_with model: @post ,method: :patch do |f| %>
+　　<h4>写真</h4>
+  <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %><br>
+    <h4>タイトル</h4>
+        <%= f.text_field :title %>
+    <h4>内容</h4>
+        <%= f.text_area :body %>
+
+       <br> <%= f.label"タグ (,で区切ると複数,登録できます)" %><br>
+       <%= f.text_field :name,value: @tag_list%> <br>
+
+       <%= f.submit 'Create Book' ,class: 'btn btn-success mt-1'%>
+        <% end %>
