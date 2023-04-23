@@ -1,6 +1,6 @@
 
 <div class="main-container">
-<h4 class="d-flex text-center justify-content-center ">
+<h4 class="d-flex text-center justify-content-center  "><%= image_tag'travel.jpg',class: "visual" %>
 
    travelは旅行のコミュニティーサイトです。</br>
    旅行に行きたいと思っても行き先が決まらないあなたへ。</br>
@@ -8,3 +8,12 @@
    旅行の行き先を決めかねている人の手助けになれば、、</h4>
    </div>
 
+<div class="sign text-center">
+   
+  <%= link_to new_user_registration_path, class: 'nav-link text-light' do %>
+  <a class="fas fa-user-plus"></a> 新規登録 <% end %>
+  
+   <%= link_to  new_user_session_path, class: 'nav-link text-light' do %>
+              <a class="fas fa-sign-in-alt"></a>ログイン<% end %>
+   
+</div>
