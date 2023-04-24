@@ -3,10 +3,11 @@
     <div class="col-md-3 ">
       <%= render 'public/users/info', user: @user %>
       <p class="text-center"><%=link_to"お気に入り記事",favorites_user_path(@user) %></p>
-      <%= render 'public/posts/form',post: @post,tag_list: @tag_list%>
-      <div>
-           <h2>7日間分の投稿数</h2>
-   <table class="table">
+      <%= render 'public/posts/form',post: @post,tag_list: @tag_list%><br><br>
+      
+           <h4 class="text-center">投稿数</h4>
+   <div class = "table_width">
+   <table class="table table-bordered">
    <thead>
     <tr>
      <th>６日前</th>

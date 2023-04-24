@@ -1,6 +1,9 @@
-<h2>Log in</h2>
+
+<div class="card bg-light mb-3 mx-auto" style=" max-width: 18rem;">
+  <div class="card-header">Log in</div>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<div class="card-body">
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -24,3 +27,6 @@
 <% end %>
 
 <%= render "public/shared/links" %>
+</div>
+</div>
+</div>
