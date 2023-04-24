@@ -5,9 +5,15 @@ Rails.application.routes.draw do
   sessions: 'public/sessions'
   }
 
+
+
   devise_for :admin,  skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
   }
+
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
 
   namespace :admin do
     resources :users, only: [:index, :edit, :update]
@@ -28,6 +34,8 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create, :destroy]
     resources :post_comments, only: [:create, :destroy]
     end
+
+
 
 
     get "search" => "searches#search" , as:'search'
