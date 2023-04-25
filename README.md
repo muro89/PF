@@ -1,24 +1,37 @@
-# README
+# travel
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+旅行コミュニティ
 
-Things you may want to cover:
+### テーマを選んだ理由
+コロナ禍で、規制されていた外出が緩和され、旅行も促進されているが、旅行の行き先を決めるときに迷うことがあります。
 
-* Ruby version
+その中で、この旅行サイトでは実際に旅行に行かれた方々の情報を参考にできるように作成しました。
 
-* System dependencies
+また、おすすめランキングもあり、現在ホットな行き先も確認できるように作成しました。
 
-* Configuration
+### ターゲットユーザ
+・ 旅行が好きな人
 
-* Database creation
+・ 旅行に行きたい人
 
-* Database initialization
+・ 行き先を決めたい人
+### 主な利用シーン
+・ 旅行の計画
 
-* How to run the test suite
+・ 最新のおすすめの旅行先を探す(ユーザーに投稿してもらい、投稿の最新順で表記)
 
-* Services (job queues, cache servers, search engines, etc.)
+・ 行き先のおすすめランキングを知りたいとき(いいね機能を作り、いいね多い順で並べる）
 
-* Deployment instructions
+## 設計書
 
-* ...
+
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
+
+
