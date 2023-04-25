@@ -10,13 +10,10 @@
 
 <div class="sign text-center">
    <a class="row">
-          <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+          <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: 'btn btn-outline-secondary', method: :post %>
         </a>
    
-  <%= link_to new_user_registration_path, class: 'nav-link text-light' do %>
-  <a class="fas fa-user-plus"></a> 新規登録 <% end %>
-  
-   <%= link_to  new_user_session_path, class: 'nav-link text-light' do %>
-              <a class="fas fa-sign-in-alt"></a>ログイン<% end %>
+  <%= link_to '新規登録', new_user_registration_path, class: 'btn btn-outline-primary' %>
+  <%= link_to'ログイン',  new_user_session_path, class: 'btn btn-outline-primary' %>
    
 </div>

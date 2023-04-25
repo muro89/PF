@@ -15,7 +15,7 @@ class Public::PostsController < ApplicationController
       @user = current_user
       @post = Post.new
       @posts = Post.all.page(params[:page]).per(5)
-      @tag_list = Tag.all
+      @tag_list = Tag.all.page(params[:page]).per(5)
   end
 
   def edit
