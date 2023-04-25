@@ -1,8 +1,9 @@
-<h2>Sign up</h2>
+<div class="card bg-light mb-3 mx-auto" style=" max-width: 18rem;">
+<div class="card-header">Sign up</div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
-
+<div class="card-body">
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
@@ -31,3 +32,5 @@
 <% end %>
 
 <%= render "public/shared/links" %>
+</div>
+

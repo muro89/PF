@@ -1,11 +1,23 @@
-<% post.post_comments.each do |post_comment| %>
-    
-    <%= post_comment.user.name %>
-    <%= post_comment.comment %>
 
-   <% if post_comment.user == current_user %>
-   <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete  ,remote:true %>
-   <% end %>
+  <table class="table table-striped">
+    <thread class="thead-dark">
+      <tr>
+        <td>名前</td>
+        <td>コメント</td>
+      </tr>
+    </thread>
+    <% post.post_comments.each do |post_comment| %>
+    <tbody>
+      <tr>
+        <td>  <%= post_comment.user.name %>  </td>
+        <td>  <%= post_comment.comment %>
+              <% if post_comment.user == current_user %>
+              <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete  ,remote:true %>
+              <% end %>
+        </td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
 
-<% end %>
 

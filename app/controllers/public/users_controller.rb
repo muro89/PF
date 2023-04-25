@@ -1,9 +1,15 @@
 class Public::UsersController < ApplicationController
+before_action :ensure_guest_user, only: [:edit]
 
   def show
     @user  = User.find(params[:id])
-    @posts  = @user.posts
+    @posts  = @user.posts.page(params[:page]).per(5)
     @post  = Post.new
+
+    @today_post = @posts.created_today
+    @yesterday_post = @posts.created_yesterday
+    @this_week_post = @posts.created_this_week
+    @last_week_post = @posts.created_last_week
   end
 
   def index
@@ -28,6 +34,18 @@ class Public::UsersController < ApplicationController
    end
   end
 
+  def search
+    @user = User.find(params[:user_id])
+    @posts = @user.posts
+    @post = Post.new
+    if params[:created_at] == ""
+      @search_post = "日付を選択してください"#①
+    else
+      create_at = params[:created_at]
+      @search_post = @posts.where(['created_at LIKE ? ', "#{create_at}%"]).count#②
+    end
+  end
+
 
   def withdrawal
     @user = User.find(params[:id])
@@ -47,6 +65,14 @@ class Public::UsersController < ApplicationController
 
 
 private
+
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.name == "guestuser"
+      redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+    end
+  end  
+
 
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
