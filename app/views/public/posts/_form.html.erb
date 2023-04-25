@@ -1,13 +1,8 @@
-    <% if post.errors.any? %>
-    <%= post.errors.count %> errors prohibited this book from being saved:
-  <ul>
-    <% post.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
 
 <h3 class="text-center mt-5">投稿</h3>
+<div>
+  <%=flash[:notice] %>
+</div>
  <div class="card" style="width:17.5rem;">
         <%= form_with model: post ,method: :post do |f| %>
     <h6 class="text-center">画像</h6>

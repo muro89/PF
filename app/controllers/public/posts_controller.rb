@@ -31,10 +31,8 @@ class Public::PostsController < ApplicationController
       @post.save_tag(tag_list)
       redirect_to post_path(@post.id),notice:'投稿完了しました'
    else
-      @posts = Post.all
-      @user = current_user
-      @tag_list = Tag.all
-      render 'index'
+      flash[:notice] = "タイトル、内容どちらも入力必須です"
+      redirect_back(fallback_location: root_path)
    end
   end
 
