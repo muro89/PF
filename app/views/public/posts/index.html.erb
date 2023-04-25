@@ -4,7 +4,7 @@
       <%= render 'public/users/info', user: @user %>
       <p class="text-center"><%=link_to"お気に入り記事",favorites_user_path(@user) %></p>
       <%= render 'public/posts/form',post: @post,tag_list: @tag_list%><br><br>
-      
+
            <h4 class="text-center">投稿数</h4>
    <div class = "table_width">
    <table class="table table-bordered">
@@ -32,19 +32,40 @@
    </tbody>
   </table>
   </div>
+   <div>
+      <table class="table">
+        <thred>
+          <tr>
+            <th>
+              <%= "タグ"%>
+            </th>
+          </tr>
+        </thred>
+        <% @tag_list.each do |list|%>
+        <tbody>
+          <tr>
+            <td>     <%=link_to list.name,search_tag_path(tag_id: list.id) %>
+                    <%="(#{list.posts.count})" %>
+            </td>
+          </tr>
+          </tbody>
+          <% end %>
+      </table>
+       <%= paginate @tag_list %>
 
+     </div>
     </div>
 
   <div class="col-md-8 offset-md-1">
 
       <h2 class="text-center">投稿記事</h2>
        <% @posts.each do |post| %>
-       <div class="card  border-primary mb-3 " sstyle="max-width: 540px;">
+       <div class="card  border-primary mb-3 ">
 
   <div class="row g-0">
     <div class="col-md-4">
        <%= link_to post_path(post.id) do %>
-      <%= image_tag post.get_image, class:"card-img-top"; %>
+      <%= image_tag post.get_image ,size:"200x200"%>
     <% end %>
     </div>
     <div class="col-md-8">
@@ -61,26 +82,14 @@
             </p>
             <p class="card-text"><%= post.body %></p>
 
-          
+
         </div>
       </div>
     </div>
   </div>
   </div>
   <% end %>
-
-
-
-
       <%= paginate @posts %>
-
-   
-
-     <div>
-      <% @tag_list.each do |list|%>
-      <%=link_to list.name,search_tag_path(tag_id: list.id) %>
-      <%="(#{list.posts.count})" %><% end %>
-     </div>
     </div>
   </div>
 </div>
