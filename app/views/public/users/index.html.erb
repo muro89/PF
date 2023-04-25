@@ -1,34 +1,36 @@
  <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3 ">
-      <%= render 'public/users/info', user: @user %>
-      <p class="text-center "><%=link_to"お気に入り記事",favorites_user_path(@user) %></p>
-      <%= render 'public/posts/form',post: @post,tag_list: @tag_list%>
+            <%= render 'public/users/info', user: @user %>
+            <p class="text-center "><%=link_to"お気に入り記事",favorites_user_path(@user) %></p>
+            <%= render 'public/posts/form',post: @post,tag_list: @tag_list%>
     </div>
 
     <div class="col-md-8 offset-md-1">
-        <h2 class="text-center">各ユーザー</h2>
-        <table class="table">
+          <h2 class="text-center">各ユーザー</h2>
+        <table class="table table-striped">
           <thead>
             <tr>
               <th scope="col">image</th>
               <th scope="col">name</th>
-           </tr>
+            </tr>
           </thead>
           <tbody>
-          <% @users.each do |user| %>
+                  <% @users.each do |user| %>
             <tr>
               <th>
-              <%= image_tag user.get_profile_image ,size:"50x50",class:"rounded-circle"%>
+                  <%= image_tag user.get_profile_image ,size:"50x50",class:"rounded-circle"%>
               </th>
-              <td><%= link_to user.name, user_path(user.id)  %></td>
+              <td>
+                  <%= link_to user.name, user_path(user.id)  %>
+              </td>
             </tr>
-          <% end %>
+                  <% end %>
           </tbody>
         </table>
-  <div class='p-top__paginate'>
-     <%= paginate @users %>
-  </div>
+      <div class='p-top__paginate'>
+           <%= paginate @users %>
+      </div>
     </div>
   </div>
 </div>

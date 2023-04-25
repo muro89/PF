@@ -6,26 +6,26 @@
 
 
     <div class="col-md-5 offset-md-1">
-
-  <div>   <h2 class="text offset-1 ">投稿内容</h2>
-    <div class="card" style="width:15rem;">
-            <%= image_tag @post.get_image ,size:"230x150"%>
-      <div class="card-body">
-        <h5 class="card-taitle">
-            <%= link_to @post.title, post_path(@post.id) %> </h5>
-        <h6 class="card-subtitle text-muted"> 内容 </h6>
-        <p class="card-text"> <%= @post.body %> </p>
-            <% @post_tags.each do |tag| %>
-        <label>  # <%= tag.name %> </label>
-        <% end %>
-
-        <br><% if @post.user == current_user %>
-        <td><%= link_to  'Edit' , edit_post_path, class: 'btn btn-success'  %> </td>
-        <td><%= link_to  'Destroy' , post_path(@post.id),method: :delete, class: 'btn btn-danger'  %> </td>
+      <div>   
+        <h2 class="text offset-1 ">投稿内容</h2>
+        <div class="card" style="width:15rem;">
+                <%= image_tag @post.get_image ,size:"230x150"%>
+          <div class="card-body">
+            <h5 class="card-taitle">
+                <%= link_to @post.title, post_path(@post.id) %> </h5>
+            <h6 class="card-subtitle text-muted"> 内容 </h6>
+            <p class="card-text"> <%= @post.body %> </p>
+                <% @post_tags.each do |tag| %>
+            <label>  # <%= tag.name %> </label>
             <% end %>
-      </div>
-    </div>
-    </div>
+    
+            <br><% if @post.user == current_user %>
+            <td><%= link_to  'Edit' , edit_post_path, class: 'btn btn-success'  %> </td>
+            <td><%= link_to  'Destroy' , post_path(@post.id),method: :delete, class: 'btn btn-danger'  %> </td>
+                <% end %>
+          </div>
+        </div>
+        </div>
     </div>
 
 

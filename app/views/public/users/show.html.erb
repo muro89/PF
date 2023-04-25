@@ -6,67 +6,65 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3 ">
-      <%= render 'public/users/info', user: @user %>
-      <p class="text-center"><%=link_to"お気に入り記事",favorites_user_path(@user) %></p>
-      <%= render 'public/posts/form',post: @post,tag_list: @tag_list%><br><br>
-      
-      
-           <h4 class="text-center">投稿数</h4>
+        <%= render 'public/users/info', user: @user %>
+        <p class="text-center"><%=link_to"お気に入り記事",favorites_user_path(@user) %></p>
+        <%= render 'public/posts/form',post: @post,tag_list: @tag_list%><br><br>
+
+        <h4 class="text-center">投稿数</h4>
       <div class = "table_width">
-   <table class="table table-bordered">
-    <thead>
-     <tr>
-      <th>今日の投稿数</th>
-      <th>前日の投稿数</th>
-      <th>前日比</th>
-     </tr>
-    </thead>
-    <tbody>
-     <tr>
-     <td><%= @today_post.count %></td>
-     <td><%= @yesterday_post.count %></td>
-     <td>
-       <% if @yesterday_post.count == 0 %>
-        前日の投稿はなし
-       <% else %>
-       <% @the_day_before =   @today_post.count / @yesterday_post.count.to_f  %>
-       <%= (@the_day_before * 100).round %>
-       <% end %>
-      </td>
-     </tr>
-    </tbody>
-   </table>
+        <table class="table table-bordered">
+          <thead>
+             <tr>
+                <th>今日の投稿数</th>
+                <th>前日の投稿数</th>
+                <th>前日比</th>
+             </tr>
+          </thead>
+          <tbody>
+             <tr>
+                 <td><%= @today_post.count %></td>
+                 <td><%= @yesterday_post.count %></td>
+                 <td>
+                   <% if @yesterday_post.count == 0 %>
+                    前日の投稿はなし
+                   <% else %>
+                   <% @the_day_before =   @today_post.count / @yesterday_post.count.to_f  %>
+                   <%= (@the_day_before * 100).round %>
+                   <% end %>
+                 </td>
+             </tr>
+          </tbody>
+        </table>
 
 
-   <table class="table table-bordered">
-  <thead>
-  <tr>
-   <th>今週の投稿</th>
-   <th>先週の投稿</th>
-   <th>前週比</th>
-  </tr>
-  </thead>
-   <tbody>
-    <tr>
-     <td><%= @this_week_post.count %></td>
-     <td><%= @last_week_post.count %></td>
-     <% if @last_week_post.count == 0 %>
-     <td>先週の投稿はなし</td>
-     <% else %>
-       <td><% @the_week_before =   @this_week_post.count / @last_week_post.count.to_f  %> #to.fは小数点まで出せる
-       <%= (@the_week_before * 100).round %>%</td> #*100で%表示
-     <% end %>
-     </tr>
-   </tbody>
-  </table>
+        <table class="table table-bordered">
+          <thead>
+              <tr>
+                  <th>今週の投稿</th>
+                  <th>先週の投稿</th>
+                  <th>前週比</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td><%= @this_week_post.count %></td>
+                  <td><%= @last_week_post.count %></td>
+                      <% if @last_week_post.count == 0 %>
+                  <td>先週の投稿はなし</td>
+                      <% else %>
+                  <td><% @the_week_before =   @this_week_post.count / @last_week_post.count.to_f  %> #to.fは小数点まで出せる
+                     <%= (@the_week_before * 100).round %>%</td> #*100で%表示
+                     <% end %>
+              </tr>
+          </tbody>
+        </table>
       </div>
-      
     </div>
 
     <div class="col-md-8 offset-md-1">
-     <h2 class="text-center">投稿内容</h2>
-     <table class="table">
-      <thead>
+       <h2 class="text-center">投稿内容</h2>
+      <table class="table table-striped text-center ">
+       <thead class="table-bordered ">
         <tr>
            <th scope="col">写真</th>
            <th scope="col">タイトル</th>
@@ -74,33 +72,29 @@
         </tr>
       </thead>
       <tbody>
-       <% @posts.each do |book| %>
+               <% @posts.each do |book| %>
         <tr>
-          <td> <%= image_tag book.get_image ,size:"50x50",class:"rounded-circle"%></td>
+           <td><%= image_tag book.get_image ,size:"50x50",class:"rounded-circle"%></td>
            <td><%= link_to book.title, post_path(book.id)%></td>
            <td><%= book.body %></td>
            <br><% if @post.user == current_user %>
            <td><%= link_to  '削除' , post_path(book.id),method: :delete, class: 'btn btn-outline-danger' %> </td>
-           <% end %>
+              <% end %>
         </tr>
-           <% end %>
-      </tbody>
-     </table>
-     <%= paginate @posts %>
+              <% end %>
+       </tbody>
+      </table>
+              <%= paginate @posts %>
+              <%= form_with url: user_search_path(@user), method: :get,local: false do |f| %>
+              <%= f.date_field :created_at %>
+              <%= f.submit '検索', class: 'btn btn-primary'  %>
+              <% end %>
 
- 
-
-
-<%= form_with url: user_search_path(@user), method: :get,local: false do |f| %>
-  <%= f.date_field :created_at %>
-  <%= f.submit '検索', class: 'btn btn-primary'  %>
-<% end %>
-
-<div id="search_result">
-  <% if @search_post.present? %>
-    <%= render 'public/user/search', search_post: @search_post %>
-  <% end %>
-</div>
+      <div id="search_result">
+              <% if @search_post.present? %>
+              <%= render 'public/user/search', search_post: @search_post %>
+              <% end %>
+      </div>
 
     </div>
   </div>
