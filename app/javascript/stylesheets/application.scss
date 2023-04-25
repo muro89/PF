@@ -6,10 +6,12 @@
   width: 25%;
 }
 
-.main{
-  background-color: #FFFFCC	;
+.main-container{
+  background-image: url("../images/travel.jpg");
+   background-size: cover;
+   width: 100%;
+   height: 800px;
 }
-
 
 .visual{
   height: 200px;

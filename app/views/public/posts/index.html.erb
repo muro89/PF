@@ -65,7 +65,7 @@
   <div class="row g-0">
     <div class="col-md-4">
        <%= link_to post_path(post.id) do %>
-      <%= image_tag post.get_image ,class:"card-img-top img-thumbnail "; %>
+      <%= image_tag post.get_image ,size:"200x200"%>
     <% end %>
     </div>
     <div class="col-md-8">
@@ -89,15 +89,7 @@
   </div>
   </div>
   <% end %>
-
-
-
-
       <%= paginate @posts %>
-
-
-
-
     </div>
   </div>
 </div>
