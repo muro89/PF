@@ -1,0 +1,13 @@
+
+  <h4 class="text-center">タグ投稿ランキング </h4>
+  <table class="table table-striped text-center">
+    <% tag_like_ranks.each.with_index(1) do |posttag, i| %>
+    <thread>
+      <tr>
+        <td>
+          第<%= i %>位 : <%=link_to posttag.name,search_tag_path(tag_id: posttag.id) %> <%= "(#{posttag.posts.count})" %><!--表示したいカラムをご自由に-->
+        </td>
+       </tr>
+    </thread>
+    <% end %>
+  </table>

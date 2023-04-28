@@ -1,0 +1,27 @@
+<h4 class="text-center">投稿数</h4>
+<div class = "table_width">
+ <table class="table table-bordered">
+   <thead>
+    <tr>
+     <th>６日前</th>
+     <th>5日前</th>
+     <th>4日前</th>
+     <th>3日前</th>
+     <th>２日前</th>
+     <th>昨日</th>
+     <th>今日</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <th><%= posts.created_today.count %></th>
+     <th><%= posts.created_yesterday.count %></th>
+     <th><%= posts.created_2days_ago.count %></th>
+     <th><%= posts.created_3days_ago.count %></th>
+     <th><%= posts.created_4days_ago.count %></th>
+     <th><%= posts.created_5days_ago.count %></th>
+     <th><%= posts.created_6days_ago.count %></th>
+    </tr>
+   </tbody>
+  </table>
+ </div>

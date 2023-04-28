@@ -1,0 +1,12 @@
+ <h4 class="text-center">いいね数ランキング </h4>
+ <table class="table table-striped text-center">
+      <% post_like_ranks.each.with_index(1) do |post, i| %>
+      <thread>
+        <tr>
+          <td>
+             第<%= i %>位 : <%= link_to post.title,post_path(post.id) %>  <!--表示したいカラムをご自由に-->
+          </td>
+        </tr>
+      </thread>
+      <% end %>
+    </table>
