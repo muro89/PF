@@ -11,11 +11,12 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-
-      @user = current_user
-      @post = Post.new
-      @posts = Post.all.page(params[:page]).per(5)
-      @tag_list = Tag.all.page(params[:page]).per(5)
+    @user = current_user
+    @post = Post.new
+    @posts = Post.all.page(params[:page]).per(5)
+    @tag_list = Tag.all.page(params[:page]).per(5)
+    @post_like_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
+    @tag_like_ranks = Tag.find(PostTag.group(:tag_id).order('count(tag_id) desc').limit(5).pluck(:tag_id))
   end
 
   def edit
@@ -24,9 +25,9 @@ class Public::PostsController < ApplicationController
   end
 
   def create
-      @post = Post.new(post_params)
-      @post.user_id = current_user.id
-      tag_list = params[:post][:name].split(',')
+    @post = Post.new(post_params)
+    @post.user_id = current_user.id
+    tag_list = params[:post][:name].split(',')
    if @post.save
       @post.save_tag(tag_list)
       redirect_to post_path(@post.id),notice:'投稿完了しました'
